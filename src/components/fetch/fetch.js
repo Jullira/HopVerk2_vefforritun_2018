@@ -34,7 +34,7 @@ export default class Fetch extends Component {
 
     async fetchData() {
         const { url } = this.props;
-        const response = await fetch(`${REACT_APP_SERVICE_URL}${url}`);
+        const response = await fetch(`${REACT_APP_SERVICE_URL}${url}`); console.log(respones);
         return response;
     }
 
