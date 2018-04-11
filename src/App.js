@@ -5,6 +5,7 @@ import { Route, NavLink, Link, Switch, withRouter } from 'react-router-dom'
 
 import UserRoute from './components/user-route';
 import Header from './components/header';
+import Baekur from './components/Baekur';
 
 import Home from './routes/home';
 import Login from './routes/login';
@@ -30,7 +31,7 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route path="/login" exact component={Login} />
             <UserRoute path="/profile" authenticated={authenticated} component={Profile} />
-            {/* todo fleiri route */}
+            <Route exact path ="/baekur" exact component ={Baekur} />
             <Route component={NotFound} />
           </Switch>
         </div>
