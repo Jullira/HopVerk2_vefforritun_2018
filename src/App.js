@@ -6,6 +6,7 @@ import { Route, NavLink, Link, Switch, withRouter } from 'react-router-dom'
 import UserRoute from './components/user-route';
 import Header from './components/header';
 import Baekur from './components/Baekur';
+import Categoreis from './components/categories';
 
 import Home from './routes/home';
 import Login from './routes/login';
@@ -32,6 +33,7 @@ class App extends Component {
             <Route path="/login" exact component={Login} />
             <UserRoute path="/profile" authenticated={authenticated} component={Profile} />
             <Route exact path ="/baekur" exact component ={Baekur} />
+            <Route exact path ="/categories" exact component ={Categoreis} />
             <Route component={NotFound} />
           </Switch>
         </div>

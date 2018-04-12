@@ -19,11 +19,7 @@ export default class Fetch extends Component {
     try {
       const response = await this.fetchData();
       const data = await response.json();
-      this.setState({ 
-        data, 
-        loading: false, 
-        status: response.status 
-      });
+      this.setState({ data, loading: false, status: response.status });
     } catch (e) {
       console.error('Error fetching data', e);
       this.setState({ error: true, loading: false });
