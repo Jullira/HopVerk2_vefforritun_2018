@@ -8,10 +8,8 @@ export default class Books extends Component {
 
     render() {
         return (
-            <div className = "book-list">
-                <h2>Bækur</h2>
-                
-                <h3>Hér skal vera listi af bókum</h3>
+            <div>
+            Hér koma allar síður með route /books
             </div>
         );
     }

@@ -20,6 +20,7 @@ class Header extends Component {
         <h1 className="header__heading"><Link to="/">Bókasafnið</Link></h1>
         <Search></Search>
         <Button onClick={this.onClick}>Leita</Button>
+        
         <Link to="/login">Innskráning</Link>
       </header>
     );
