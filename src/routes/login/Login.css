@@ -1,0 +1,54 @@
+/* Bordered form */
+form {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 400px;
+    margin: auto;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+form button {
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #4e1d04;
+    font-size: 1rem;
+}
+
+/* Add a hover effect for buttons */
+form button:hover {
+    opacity: 0.8;
+}
+
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}

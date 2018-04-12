@@ -30,7 +30,7 @@ class App extends Component {
         <div className="main__content">
           <Switch location={this.props.location}>
             <Route path="/" exact component={Home} />
-            <Route path="/login" exact component={Login} />
+            <Route exact path="/login" exact component={Login} />
             <UserRoute path="/profile" authenticated={authenticated} component={Profile} />
             <Route exact path ="/baekur" exact component ={Baekur} />
             <Route exact path ="/categories" exact component ={Categoreis} />

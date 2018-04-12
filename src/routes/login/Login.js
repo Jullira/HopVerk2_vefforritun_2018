@@ -9,8 +9,21 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <p>Innskráning</p>
+      <div className = "login-page">
+        <form className = "login-form">
+          <div className="container">
+            <label for="uname"><b>Username</b></label>
+              <input type="text" placeholder="Enter username" name="name" required />
+
+            <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" required />
+
+            <button type="submit" className = "login-button">Login</button>
+            <label>
+              <input type="checkbox" checked="checked" name="remember" /> Remember me
+            </label>
+          </div>
+        </form>
       </div>
     );
   }
