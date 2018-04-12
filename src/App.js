@@ -5,9 +5,8 @@ import { Route, NavLink, Link, Switch, withRouter } from 'react-router-dom'
 
 import UserRoute from './components/user-route';
 import Header from './components/header';
-import Books from './components/books';
-import Categoreis from './components/categories';
 
+import Books from './routes/books';
 import Home from './routes/home';
 import Login from './routes/login';
 import Profile from './routes/profile';
