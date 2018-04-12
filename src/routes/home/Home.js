@@ -4,10 +4,11 @@ import { Helmet } from 'react-helmet';
 
 import './home.css';
 
+
 class Home extends Component {
 
   render() {
-
+    
     /* todo birta mismunandi upplýsingar ef innskráður notandi eða ekki */
 
     return (

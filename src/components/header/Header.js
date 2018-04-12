@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Button from '../button';
-import Search from '../Search';
+import Search from '../search';
 
 import './Header.css';
 
