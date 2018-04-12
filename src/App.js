@@ -5,13 +5,14 @@ import { Route, NavLink, Link, Switch, withRouter } from 'react-router-dom'
 
 import UserRoute from './components/user-route';
 import Header from './components/header';
-import Baekur from './components/Baekur';
+import Books from './components/books';
 import Categoreis from './components/categories';
 
 import Home from './routes/home';
 import Login from './routes/login';
 import Profile from './routes/profile';
 import NotFound from './routes/not-found';
+import Register from './routes/register';
 /* todo fleiri routes */
 
 import './App.css';
@@ -32,8 +33,9 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route exact path="/login" exact component={Login} />
             <UserRoute path="/profile" authenticated={authenticated} component={Profile} />
-            <Route exact path ="/baekur" exact component ={Baekur} />
+            <Route exact path ="/books" exact component ={Books} />
             <Route exact path ="/categories" exact component ={Categoreis} />
+            <Route exact path = "/register" exact component = {Register} />
             <Route component={NotFound} />
           </Switch>
         </div>

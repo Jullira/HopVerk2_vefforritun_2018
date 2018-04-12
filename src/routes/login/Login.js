@@ -11,7 +11,7 @@ class Login extends Component {
     return (
       <div className = "login-page">
         <form className = "login-form">
-          <div className="container">
+          <div className="login-form-container">
             <label for="uname"><b>Username</b></label>
               <input type="text" placeholder="Enter username" name="name" required />
 
