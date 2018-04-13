@@ -6,8 +6,18 @@ import './Heading.css';
 export default class Heading extends Component {
   
   render() {
+    const {type} = this.props;
+
+    let heading; 
+    switch (type) {
+      case "BookList": 
+        heading = "Bækur";
+        break;
+      // Fleiri cases 
+    }
+
     return (
-      <h1> Generic titill </h1>
-    );
+      <h2 className={`heading-${type}`} > {heading} </h2>
+    )
   }
 }

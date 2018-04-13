@@ -10,8 +10,7 @@ import AlterBook from './routes/alter-book';
 
 import NotFound from '../not-found';
 
-import './Books.css'
-
+import './Books.css';
 
 export default class Books extends Component {
     
