@@ -1,2 +1,2 @@
-import ListItem from './list-item';
+import ListItem from './ListItem';
 export default ListItem;

@@ -1,2 +1,2 @@
-import Heading from './heading';
+import Heading from './Heading';
 export default Heading;

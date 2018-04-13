@@ -1,2 +1,2 @@
-import ListPane from './list-pane';
+import ListPane from './ListPane';
 export default ListPane;

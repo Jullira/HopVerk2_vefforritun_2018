@@ -15,7 +15,7 @@ class Home extends Component {
       <div className="Home">
         <h2>Velkomin á bókasafnið</h2>
         <p>Til að njóta bókasafnsins til fulls mælum við með að <Link to="/login">Skrá sig inn</Link>.
-        Þangað til getur þú skoðað <Link to="/baekur">lista af bókum</Link></p>
+        Þangað til getur þú skoðað <Link to="/books">lista af bókum</Link></p>
       </div>
     );
   }
