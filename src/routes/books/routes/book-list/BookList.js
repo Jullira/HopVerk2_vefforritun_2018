@@ -9,17 +9,23 @@ import api from '../../../../api';
 
 export default class BookList extends Component {
 
-    state = { data: null, loading: true, error: false, offset: 0}
+    state = { data: null, loading: true, error: false, offset: 0, search:null, type:"Books"}
     
     onClickPrevious = async (e) => {
         const newOffset = this.state.offset-10;
         await this.setState({ offset: newOffset});
         await this.getData();        
     }
+
     onClickNext = async (e) => {
         const newOffset = this.state.offset+10;
         await this.setState({ offset: newOffset});
         await this.getData();
+    }
+
+    async newSearch(){
+        await this.setState({offset:0, search:this.props.location.search});
+        this.getData();
     }
 
     async componentDidMount() {
@@ -28,7 +34,15 @@ export default class BookList extends Component {
 
     async getData() {
         try {
-            const url = 'books?offset=' + this.state.offset + '&limit=10'
+            const query = this.props.location.search;
+            let url;
+            if (query) {
+                this.setState({search:query, type:"Search"});
+                url = 'books?search=' + query.split("=")[1] + '&offset='+this.state.offset + '&limit=10';
+            } else {
+                url = 'books?offset=' + this.state.offset + '&limit=10';
+            }
+ 
             const data = await api.get(url);
             this.setState({ data, loading: false });
             } catch (e) {
@@ -44,8 +58,8 @@ export default class BookList extends Component {
             )
         }
 
-        if(this.props.location.search !== ""){
-            console.log(this.props.location.search);
+        if(this.props.location.search !== "" && this.state.search !== this.props.location.search){
+            this.newSearch();
         }
 
         const data = this.state.data;
@@ -54,13 +68,14 @@ export default class BookList extends Component {
         if (data.offset > 0 ) {
             prev = <Button onClick={this.onClickPrevious}> {`< Fyrri síða`} </Button>;
         }
+        /// Skoða - next takki ef nkl 10 á síðustu bls - bug
         if (data.limit === data.items.length) {
             next = <Button onClick={this.onClickNext}> {`Næsta síða >`} </Button>;
         }
 
         return (
             <div>
-                <Heading type="BookList" />
+                <Heading type={this.state.type} search={this.state.search} />
                 <ListPane items={data.items} type="BookList"/>
                 <div className="listfooter">
                     {prev}

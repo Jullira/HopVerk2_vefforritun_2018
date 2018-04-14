@@ -6,13 +6,17 @@ import './Heading.css';
 export default class Heading extends Component {
   
   render() {
-    const {type} = this.props;
-
+    const {type, search} = this.props;
     let heading; 
     switch (type) {
-      case "BookList": 
+      case "Books": 
         heading = "Bækur";
         break;
+      case "Search":
+        const searchString = search.split("=");
+        heading = "Bókaleit: " + searchString[1];
+        break;
+
       // Fleiri cases 
     }
 

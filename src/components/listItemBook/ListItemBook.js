@@ -9,7 +9,7 @@ export default class ListitemBook extends Component {
 
         return(
             <div className = "list-itemBook">
-                <p className = "booktitle"> <Link to= {`/books/${id}`} > {title} </Link> </p>
+                <h3 className = "booktitle"> <Link to= {`/books/${id}`} > {title} </Link> </h3>
                 <p className = "bookauthor"> Eftir {author} </p>
             </div>
         )

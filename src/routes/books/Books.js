@@ -22,7 +22,8 @@ export default class Books extends Component {
         return (
             <Switch>
                 <Route exact path={`${path}`} component={BookList} />
-                <Route path={`${path}/new`} component={AlterBook} />
+                <Route exact path={`${path}:search`} component={BookList} />
+                <Route exact path={`${path}/new`} component={AlterBook} />
                 <Route path={`${path}/:id/edit`} component={AlterBook} />
                 <Route path={`${path}/:id`} component={ViewBook} />
                 {/* <UserRoute path={`${path}/new`} authenticated={authenticated} component={AlterBook} /> */}
