@@ -30,15 +30,11 @@ export default class Search extends Component {
 
     render() {
         return (
-<<<<<<< HEAD
-            <input type = "text" className = "Search" placeholder = "Bókaleit"/>
-=======
             <div className = "search">
             {this.renderRedirect()}
                 <input  className="searchBox" value={this.state.inputValue} onChange={this.updateInputValue}/>
                 <Button onClick={this.onClick}> Leita </Button>
             </div>
->>>>>>> fe8a717d70c608a2a931e82e4cd0986642500a81
         );
     }
 }

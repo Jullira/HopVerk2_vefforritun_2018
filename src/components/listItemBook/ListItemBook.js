@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import './ListItemBook.css';
-
-export default class ListItemBook extends Component {
-
-    render() {
-        
-    }
-=======
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -26,5 +14,4 @@ export default class ListitemBook extends Component {
             </div>
         )
     }
->>>>>>> fe8a717d70c608a2a931e82e4cd0986642500a81
 }

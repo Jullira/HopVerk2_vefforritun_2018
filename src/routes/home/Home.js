@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import './Home.css';
+import './home.css';
 
 
 class Home extends Component {
 
-<<<<<<< HEAD
-  render() {    /* todo birta mismunandi upplýsingar ef innskráður notandi eða ekki */
-=======
   render() {
     
     /* todo birta mismunandi upplýsingar ef innskráður notandi eða ekki */
->>>>>>> fe8a717d70c608a2a931e82e4cd0986642500a81
 
     return (
       <div className="Home">
