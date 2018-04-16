@@ -7,7 +7,7 @@ export default class Heading extends Component {
   
   render() {
     return (
-      <h1> Generic titill </h1>
+      <h1>{this.props.location.path}</h1>
     );
   }
 }

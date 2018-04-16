@@ -7,7 +7,7 @@ export default class Search extends Component {
 
     render() {
         return (
-            <input type = "text" className = "Search"/>
+            <input type = "text" className = "Search" placeholder = "Bókaleit"/>
         );
     }
 }

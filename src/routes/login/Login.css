@@ -1,8 +1,8 @@
 /* Bordered form */
-form {
+.login-page {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 300px;
     margin: auto;
 }
 
@@ -16,6 +16,7 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 form button {
+    margin: 10px;
     padding: 10px 20px;
     border: 0;
     border-radius: 5px;
@@ -24,9 +25,6 @@ form button {
     font-size: 1rem;
 }
 
-form label {
-    padding: 5px;
-}
 /* Add a hover effect for buttons */
 form button:hover {
     opacity: 0.8;
@@ -42,15 +40,4 @@ form button:hover {
 span.psw {
     float: right;
     padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
-    }
-    .cancelbtn {
-        width: 100%;
-    }
 }
