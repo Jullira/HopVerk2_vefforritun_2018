@@ -39,11 +39,14 @@ export default class ViewBook extends Component {
                 <div> loading </div>
             )
         }
+
+        const { id } = this.props.match.params;
         const {bookdata} = this.state;
+
         return (
             <div className="viewBook" >
                 <BookInfo data={bookdata} />
-                <Link to="/books">Breyta bók</Link> 
+                <Link to = {`/books/${id}/edit`}>Breyta bók</Link> 
                 <BookReview />
                 <Button  onClick={this.context.router.history.goBack}> Til baka </Button>
             </div>
