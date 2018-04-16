@@ -2,3 +2,12 @@
   width: 900px;
   margin: auto;
 }
+
+.listfooter {
+  display: flex;
+  float: left;
+  width: 400px;
+  margin: auto;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
