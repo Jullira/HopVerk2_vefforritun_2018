@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import './AlterBook.css';
-import Heading from '../../../../components/heading';
+import { connect } from 'react-redux';
 import api from '../../../../api';
+import { Link } from 'react-router-dom';
+import BookInfo from '../../../../components/book-info';
+import BookReview from '../../../../components/book-review';
+import Button from '../../../../components/button'
+import AlterBookInfo from '../../../../components/alter-book-info';
 
 
-// Tekur inn object sem er bók - ef tómt þá 
-// verða allar breyturnar empty string
-// þannig formið verið tómt
-// þarf líka að senda aftur í þjónustuna
-// athuga hvort id sé tómt eða ekki 
-// og senda aftur í vefþjónustuna annað hvort 
-
-
-export default class Alterbook extends Component {
+export default class AlterBook extends Component {
 
     static contextTypes = {
         router: PropTypes.object,
-    }
-
-    state = { bookdata: null, readdata: null, loading: true, error: false };
+      }
+        
+    state = { bookdata: null, readdata:null, loading: true, error: false};
 
     async componentDidMount() {
         this.getData();
@@ -30,35 +25,29 @@ export default class Alterbook extends Component {
     async getData() {
         try {
             const { id } = this.props.match.params;
-            const bookdata = await api.get('books/' + id);
+            const bookdata = await api.get('books/'+id);
             // const readdata = 
             this.setState({ bookdata, loading: false });
-        } catch (e) {
+            } catch (e) {
             console.error('Error fetching data', e);
             this.setState({ error: true, loading: false });
-        }
+            }
     }
 
     render() {
-        if (this.state.loading) {
+        if(this.state.loading) {
             return (
                 <div> loading </div>
             )
         }
 
         const { id } = this.props.match.params;
-        const { bookdata } = this.state;
-        const { title, author, isbn13, categorytitle, description, pagecount, language } = this.props.data;
+        const {bookdata} = this.state;
 
         return (
-            <div className="bookinfo">
-                <Heading>Breytabók</Heading>
-                <input type="textbox">{title}</input>
-                <input type="textbox">{author}</input>
-                <input type="textarea">{description}</input>
-                <p> {categorytitle} </p>
-                <p> {description} </p>
-
+            <div className="viewBook" >
+                <AlterBookInfo data={bookdata} />
+                <Button  onClick={this.context.router.history.goBack}> Til baka </Button>
             </div>
         );
     }
