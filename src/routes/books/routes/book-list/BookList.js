@@ -36,10 +36,11 @@ export default class BookList extends Component {
         try {
             const query = this.props.location.search;
             let url;
-            if (query) {
+            if (query && query !== '') {
                 this.setState({search:query, type:"Search"});
                 url = 'books?search=' + query.split("=")[1] + '&offset='+this.state.offset + '&limit=10';
             } else {
+                this.setState({type:"Books"});
                 url = 'books?offset=' + this.state.offset + '&limit=10';
             }
  
@@ -58,7 +59,7 @@ export default class BookList extends Component {
             )
         }
 
-        if(this.props.location.search !== "" && this.state.search !== this.props.location.search){
+        if(this.state.search !== this.props.location.search){
             this.newSearch();
         }
 

@@ -16,11 +16,20 @@ export default class Search extends Component {
     onClick = (e) => {
         this.setState({redirect:true});
     }
+    enterPressed = (e) => {
+        if (e.key === 'Enter') {
+            this.setState({redirect:true});
+          }
+    }
     
     renderRedirect = () => {
         if (this.state.redirect) {
             this.setState({redirect:false});
-            return <Redirect  to={`/books?query=${this.state.inputValue}`}/>
+            if(this.state.inputValue!==''){
+                return <Redirect  to={`/books?query=${this.state.inputValue}`}/>
+            }else{
+                return <Redirect  to={`/books`}/>
+            }
         }
     }
 
@@ -32,7 +41,7 @@ export default class Search extends Component {
         return (
             <div className = "search">
             {this.renderRedirect()}
-                <input  className="searchBox" value={this.state.inputValue} onChange={this.updateInputValue}/>
+                <input  className="searchBox" value={this.state.inputValue} onChange={this.updateInputValue} onKeyPress={this.enterPressed}/>
                 <Button onClick={this.onClick}> Leita </Button>
             </div>
         );
