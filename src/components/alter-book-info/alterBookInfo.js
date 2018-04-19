@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 
-import './alterBookInfo.css';
+import './AlterBookInfo.css';
 
 /* todo aðrar útgáfur af takka fyrir disabled, minni takka fyrir logout og "warning" takka */
 
