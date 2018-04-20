@@ -1,2 +1,2 @@
-import AlterBookInfo from './AlterBookInfo';
+import AlterBookInfo from './alterBookInfo';
 export default AlterBookInfo;

@@ -16,7 +16,7 @@ export default class AlterBook extends Component {
         router: PropTypes.object,
       }
         
-    state = { bookdata: null, readdata:null, loading: true, error: false};
+    state = { categories: null, bookdata: null, readdata:null, loading: true, error: false};
 
     async componentDidMount() {
         this.getData();
@@ -26,8 +26,9 @@ export default class AlterBook extends Component {
         try {
             const { id } = this.props.match.params;
             const bookdata = await api.get('books/'+id);
-            // const readdata = 
-            this.setState({ bookdata, loading: false });
+            const categories = await api.get('categories?limit=100');
+            console.log(categories);
+            this.setState({ categories, bookdata, loading: false });
             } catch (e) {
             console.error('Error fetching data', e);
             this.setState({ error: true, loading: false });
@@ -42,11 +43,11 @@ export default class AlterBook extends Component {
         }
 
         const { id } = this.props.match.params;
-        const {bookdata} = this.state;
+        const {categories, bookdata} = this.state;
 
         return (
             <div className="viewBook" >
-                <AlterBookInfo data={bookdata} />
+                <AlterBookInfo data={bookdata} categories = {categories}/>
                 <Button  onClick={this.context.router.history.goBack}> Til baka </Button>
             </div>
         );

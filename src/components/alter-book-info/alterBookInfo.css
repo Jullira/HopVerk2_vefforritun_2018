@@ -13,8 +13,13 @@
 }
 
 .alter-book-info-form input textarea {
-  width: auto;
+  
+  width: 500px;
   float: right;
+}
+
+.alter-book-info-form input{
+  margin: 5px, 0, 5px 0 ;
 }
 
 .alter-book-info-form li {
@@ -32,3 +37,8 @@
   background-color: #4e1d04;
   font-size: 1rem;
 }
+
+.alter-book-info-form textarea {
+  width: 500px;
+}
+
