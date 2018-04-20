@@ -5,6 +5,8 @@ import { registerUser } from '../../actions/auth';
 
 /* todo sækja actions frá ./actions */
 import api from '../../api';
+import { Link } from 'react-router-dom';
+import Heading from '../../components/heading';
 import Button from '../../components/button';
 import './Register.css';
 
@@ -19,7 +21,6 @@ class Register extends Component {
     }
     handleSubmit = async (e) => {
         e.preventDefault();
-        //const register = await api.register(this.state.username, this.state.password, this.state.name); // virkar, kann ekki að rerouta og ves 
         const { dispatch } = this.props;
         dispatch(registerUser(this.state.username, this.state.password, this.state.name));
     }
@@ -28,11 +29,19 @@ class Register extends Component {
         const { username, password, name} = this.state;
         const { isFetching, isRegistered, message } = this.props;
 
-        console.log(isRegistered);
+        if (isRegistered) { 
+            return (
+                <div className = "register-page">
+                    <Heading type="Registered"/>
+                    <Link to="/login">Innskráning</Link>
+                </div>
+            );
+        }
 
         return (
             <div className = "register-page">
-                  {message && ( `${message.map(msg => <p>{msg.message}</p>)}`) }
+                <Heading type="Register"/>
+                {message && ( `${message.map(msg => <p>{msg.message}</p>)}`) }
                 <form className = "register-form" onSubmit={this.handleSubmit}>
                     <div className="register-form-container">
                         <input type="text" placeholder="Notendanafn" name="username" value={username} required onChange={this.handleInputChange}/>
@@ -41,16 +50,17 @@ class Register extends Component {
                         <button type="submit" className = "register-button">Nýskrá</button>
                     </div>
                 </form>
+                <Link to="/login">Innskráning</Link>
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  console.log(state.auth.isRegistered);
   return {
     isFetching: state.auth.isFetching,
-    isAuthenticated: state.auth.isRegistered,
+    isRegistered: state.auth.isRegistered,
     message: state.auth.message,
   }
 }

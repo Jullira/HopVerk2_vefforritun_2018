@@ -75,7 +75,7 @@ export const loginUser = (username, password) => {
   }
 }
 
-function requestLogout() {
+export function requestLogout() {
   return {
     type: LOGOUT_REQUEST,
     isAuthenticated: false,
@@ -100,7 +100,7 @@ function registerError(errors) {
   }
 }
 
-function receiveRegister(user) {
+function receiveRegister() {
   return {
     type: REGISTER_RECEIVED,
     isFetching: false,
@@ -116,15 +116,16 @@ export const registerUser = (username, password, name) => {
     } catch (e) {
       return dispatch(registerError(e));
     }
-    
+    console.log(register);
+
     if (register && register.errors ) {
       console.log(register);
       dispatch(registerError(register.errors));
     }
 
-    if (register && register.user) {
-      const {user} = register;
-      dispatch(receiveRegister(user));
+    if (register && register.id) {
+      console.log('register return true ---- ')
+      dispatch(receiveRegister());
     }
   }
 }

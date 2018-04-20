@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './Home.css';
 
 
 class Home extends Component {
-  
+  state = { isAuthenticated: null };
+
   render() {
-    const { isAuthenticated } = this.props; // no work 
+    const { isAuthenticated } = this.props; 
   
     console.log(isAuthenticated);
     /* todo birta mismunandi upplýsingar ef innskráður notandi eða ekki */
@@ -33,5 +35,11 @@ class Home extends Component {
 }
 
 /* todo setja upp tengingu við redux til að vita stöðu notanda */
-export default Home;
+const mapStateToProps = (state) => {
+  console.log("state.auth.isAuthenticated---", state.auth.isAuthenticated);
+  return{
+    isAuthenticated: state.auth.isAuthenticated,
+  }
+}
 
+export default connect(mapStateToProps)(Home);

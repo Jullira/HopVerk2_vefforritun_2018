@@ -16,10 +16,16 @@ import Register from './routes/register';
 import './App.css';
 
 class App extends Component {
-  
+  state = { isAuthenticated: null, isRegistered:null };
+
+  componentWillReceiveProps(nextProps) {
+    const { isAuthenticated, isRegistered} = nextProps;
+    this.setState({ isAuthenticated, isRegistered });
+  }
   
   render() {
-    const { isAuthenticated } = this.props; // virkar ekki idk ??? 
+    const { isAuthenticated, isRegistered} = this.state; // virkar ekki idk ??? 
+    console.log("app -- auth ", isAuthenticated);
     //const isAuthenticated = false; /* vita hvort notandi sé innskráður */
     console.log('isAuthenticated   ', isAuthenticated)
     return (
@@ -34,7 +40,7 @@ class App extends Component {
             <Route  path="/login" exact component={Login} />
             <UserRoute path="/profile" isAuthenticated={isAuthenticated} component={Profile} />
             <Route path ="/books" component ={Books} />
-            <Route  path = "/register" exact component = {Register} />
+            <Route  path = "/register" exact isRegistered={isRegistered} component = {Register} />
             <Route component={NotFound} />
           </Switch>
         </div>
@@ -45,8 +51,11 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("state.auth.isAuthenticated---", state.auth.isAuthenticated);
-  isAuthenticated: state.auth.isAuthenticated
+  console.log("state.auth.isRegistered---", state.auth.isRegistered);
+  return{
+    isAuthenticated: state.auth.isAuthenticated,
+    isRegistered: state.auth.isRegistered,
+  }
 }
 
 export default withRouter(connect(mapStateToProps)(App));

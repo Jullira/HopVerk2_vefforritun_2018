@@ -16,12 +16,18 @@ export default class Heading extends Component {
         const searchString = search.split("=");
         heading = "Bókaleit: " + searchString[1];
         break;
+      case "Register":
+        heading = "Nýskráning";
+        break; 
+      case "Registered":
+        heading = "Nýskráning tókst!";
+        break; 
 
       // Fleiri cases 
     }
 
     return (
-      <h2 className={`heading-${type}`} > {heading} </h2>
+      <h2 className={`heading heading-${type}`} > {heading} </h2>
     )
   }
 }
