@@ -17,7 +17,6 @@ export default class AlterBookInfo extends Component {
     const { name, value } = e.target;
     if (name) {
       this.setState({ [name]: value });
-      // console.log(this.state);
     }
   }
 
