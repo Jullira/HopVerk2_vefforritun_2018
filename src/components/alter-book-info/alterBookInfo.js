@@ -10,73 +10,89 @@ import './alterBookInfo.css';
 /* todo aðrar útgáfur af takka fyrir disabled, minni takka fyrir logout og "warning" takka */
 
 export default class AlterBookInfo extends Component {
+  state = { title:'', author:'', isbn13:'',categorytitle:'', description:'', pagecount:'', language:''};
 
   handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name) {
       this.setState({ [name]: value });
+      // console.log(this.state);
     }
   }
 
+  componentDidMount() {
+    const { title, author, isbn13, categorytitle, description, pagecount, language} = this.props.data;
+    this.setState({ title, author, isbn13, categorytitle, description, pagecount, language});
+  }
+
   handleSubmit = (e) => {
+    const { title, author, isbn13, categorytitle, description, pagecount, language} = this.state;
+    console.log(this.state);
     e.preventDefault();
-    const { dispatch } = this.props;
-    dispatch(loginUser(this.state.username, this.state.password));
+    const url  = 'books/'+ this.props.id;
+    const data = {
+      title,
+      author,
+      isbn13,
+      categorytitle,
+      description,
+      pagecount,
+      language,
+    }
+    api.patch(url, data);
   }
 
   render() {
-    const { title, author, isbn13, categorytitle, description, pagecount, language} = this.props.data;
+    const { title, author, isbn13, categorytitle, description, pagecount, language} = this.state;
     const { categories } = this.props;
-    console.log(categories);
     
     return (
       <div className="alter-book-info">
-        <form className="alter-book-info-form">
+        <form className="alter-book-info-form" onSubmit = {this.handleSubmit}>
           <li>
-            <label for = "title">Titill</label>
+            <label htmlFor = "title">Titill</label>
             <input type = "textbox" name = "title" value = {title}
             onChange={this.handleInputChange} />
           </li>
           <li>
-            <label for = "author">Höfundur</label>
+            <label htmlFor = "author">Höfundur</label>
             <input type = "textbox" name = "author" value={author}
             onChange={this.handleInputChange} />
           </li>
           <li>
-            <label for = "isbn13">ISBN13</label>
+            <label htmlFor = "isbn13">ISBN13</label>
             <input type = "textbox" name ="isbn13" value={isbn13}
-            onChange = {this.handleInputChange} />
+            onChange={this.handleInputChange} />
           </li>
           <li>
-            <label for = "category">Flokkur</label>
-            <select ref = "userInput" defaultvalue = "" name = "categorytitle" required>
+            <label htmlFor = "category">Flokkur</label>
+            <select ref = "userInput" name = "categorytitle"  required onChange={this.handleInputChange} >
               <option value = "categorytitle" disabled>Flokkar</option> {
                 categories.items.map((category) => {
                   return <option key = {category.id}
-                  value = {category.title}
-                  onChange = {this.handleInputChange}
+                  value = {category.title}                  
                   >{category.title}</option>;
                 })
               }
             </select>
           </li>
           <li>
-            <label for = "description">Lýsing</label>
+            <label htmlFor = "description">Lýsing</label>
             <textarea name = "description"
              value = {description}
              rows = "10"
-             onChange = {this.handleInputChange}
+             onChange={this.handleInputChange}
               />
           </li>
           <li>
-            <label for = "pagecount">Blaðsíðufjöldi</label>
+            <label htmlFor = "pagecount">Blaðsíðufjöldi</label>
             <input type = "textbox" name = "pagecount" value={pagecount}
-            onChange = {this.handleInputChange} />
+            onChange={this.handleInputChange} />
           </li>
           <li>
-            <label for = "language">Tungumál</label>
+            <label htmlFor = "language">Tungumál</label>
             <input type = "textbox" name = "language" value={language}
-            onChange = {this.handleInputChange} />
+            onChange={this.handleInputChange} />
           </li>
           <input type = "submit" className="submit" />
 
