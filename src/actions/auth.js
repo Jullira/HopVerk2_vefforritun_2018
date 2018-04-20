@@ -49,6 +49,7 @@ function receiveLogin(user, token) {
 
 export const loginUser = (username, password) => {
   return async (dispatch) => {
+    
     dispatch(requestLogin());
 
     let login;
