@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import api from '../../api';
+import { loginUser } from '../../actions/auth';
 import { Link } from 'react-router-dom';
 
 import './alterBookInfo.css';

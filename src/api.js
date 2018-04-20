@@ -47,6 +47,64 @@ async function patch(endpoint, inputBody) {
   return response.json();
 }
 
+async function post(endpoint, inputBody) {
+  const token = window.localStorage.getItem('token');
+  const url = `${baseurl}${endpoint}`;
+  console.log(inputBody);
+  
+  const options = {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(inputBody),
+    method: 'POST',
+  };
+  
+  if (token) {
+    options.headers['Authorization'] = `Bearer ${token}`;
+  }
+  let response = null;
+  console.log(options);
+  try{
+    response = await fetch(url, options);
+  } catch(e) {
+    console.error(e);
+  }
+
+  console.log(response);
+  return response.json();
+}
+
+async function apiDelete(endpoint, inputBody) {
+  const token = window.localStorage.getItem('token');
+  const url = `${baseurl}${endpoint}`;
+  console.log(inputBody);
+  
+  const options = {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(inputBody),
+    method: 'DELETE',
+  };
+  
+  if (token) {
+    options.headers['Authorization'] = `Bearer ${token}`;
+  }
+  let response = null;
+  console.log(options);
+  try{
+    response = await fetch(url, options);
+  } catch(e) {
+    console.error(e);
+  }
+
+  console.log(response);
+  return response.json();
+}
+
 
 async function login(username, password) {
   const url = `${baseurl}login`;
@@ -94,4 +152,6 @@ export default {
   login,
   register,
   patch,
+  post,
+  apiDelete,
 };

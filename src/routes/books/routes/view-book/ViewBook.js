@@ -18,11 +18,13 @@ export default class ViewBook extends Component {
     state = {review: '', 
             rating:1, 
             bookdata: null, 
-            readdata:null, 
+            readdata:[], 
             reviewWindowOpen: false, 
             loadingB: true, 
             loadingR: true, 
-            error: false};
+            error: false,
+            update:false,
+            };
 
     async componentDidMount() {
         const { id } = this.props.match.params;
@@ -67,17 +69,25 @@ export default class ViewBook extends Component {
         }
       }
       
-    handleSubmit = (e) => {
+    createReview = (e) => {
         e.preventDefault();
-// post nýja einkunn   ath bokkId í gagnagr.
+        const {rating, review}=this.state;
+        const {id} = this.props.match.params;
 
-
+        const url = 'users/me/read';
+        const data = {
+            'bookId': parseInt(id),
+            'rating': parseInt(rating),
+            'review': review
+        }
+        const update = api.post(url, data);
+        this.setState({reviewWindowOpen: false, review:'', rating:''});
+        this.getReviews(id);
     }
       
 
 
     render() {
-
         const { id } = this.props.match.params;
         const {bookdata, readdata, reviewWindowOpen, rating, review, loadingB, loadingR} = this.state;
 
@@ -93,20 +103,20 @@ export default class ViewBook extends Component {
             <div className="viewBook" >
                 <BookInfo data={bookdata}/>
                 <Link to = {`/books/${id}/edit`}>Breyta bók</Link> 
-                {(!!readdata) ? <BookReview data={readdata} id={id}/> : null }
+                {(readdata) ? <BookReview data={readdata} id={id}/> : null }
                 {(!reviewWindowOpen) 
                 ? <Button  onClick={this.openReviewWindow}> Skrá lestur </Button>
                 : <div className="setReviewWrapper">
                     <form onSubmit={this.createReview}>
-                        <label for = "review">Umsögn:</label>
+                        <label htmlFor = "review">Umsögn:</label>
                         <textarea name = "review" value={review} onChange={this.handleInputChange} rows = "10" />
-                        <label for = "rating">Einkunn:</label>
+                        <label htmlFor = "rating">Einkunn:</label>
                         <select name="rating" required onChange={this.handleInputChange}>
-                            {ratingRange.map((number) => <option value={number}> {number}</option> )}
+                            {ratingRange.map((number, i) => <option key={i} value={number}> {number}</option> )}
                         </select>
                     <Button type="submit" > Vista </Button>
-                    <Button className="cancel" onClick={this.closeReviewWindow}> Hætta við </Button>
                     </form> 
+                    <Button className="cancel" onClick={this.closeReviewWindow}> Hætta við </Button>
                 </div>
                 }
                 
