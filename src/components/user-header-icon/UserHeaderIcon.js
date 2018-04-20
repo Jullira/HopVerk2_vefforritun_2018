@@ -15,12 +15,20 @@ class UserHeaderIcon extends Component {
 }
 
     render() {
-        const {image, username, name} = this.props.user;
+        const { username, name} = this.props.user;
+        let { image } = this.props.user;
+        if (image ) {
+          const img_url_parts = image.split('upload');
+          image = `${img_url_parts[0]}upload/w_400,h_400,c_crop,g_face,r_max/w_200${img_url_parts[1]}`
+        }
+        else {
+          image = '/profile.jpg';
+        }
         console.log(this.props);
         return(
             <div className = "userHeaderIcon">
-              <p> {image} </p>  
-              <Link to="/profile">{username}</Link>
+              <img className="user_img" src={image}/>  
+              <Link to="/profile">{name}</Link>
               <Button onClick={this.logOutHandler}>Útskrá</Button>
             </div>
         )
