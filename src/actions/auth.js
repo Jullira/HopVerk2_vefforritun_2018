@@ -54,7 +54,7 @@ export const loginUser = (username, password) => {
 
     let login;
     try {
-      login = await api.login(username, password); // Kalla á post aðferð úr api hér :) - eigum eftir að gera hana
+      login = await api.login(username, password);
     } catch (e) {
       return dispatch(loginError(e));
     }
@@ -113,7 +113,7 @@ export const registerUser = (username, password, name) => {
   return async (dispatch) => {
     let register;
     try {
-      register = await api.register(username, password, password); // Kalla á post aðferð úr api hér :) - eigum eftir að gera hana
+      register = await api.register(username, password, password);
     } catch (e) {
       return dispatch(registerError(e));
     }

@@ -4,6 +4,7 @@ import Select from 'react-select';
 import { connect } from 'react-redux';
 import api from '../../api';
 import { Link } from 'react-router-dom';
+import { loginUser } from '../../actions/auth';
 
 import './alterBookInfo.css';
 
