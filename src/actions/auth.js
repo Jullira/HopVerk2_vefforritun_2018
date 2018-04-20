@@ -9,11 +9,13 @@
 
 /* todo async "thunk" fyrir tengingu við vefþjónustu */
 import api from '../api';
+import { request } from 'https';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
-export const LOGIN_LOGOUT = 'LOGIN_LOGOUT';
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
+export const LOGIN_RECEIVED = 'LOGIN_RECEIVED';
+export const LOGIN_ERROR = 'LOGIN_ERROR'
 
 function requestLogin() {
   return {
@@ -33,55 +35,57 @@ function receiveLogin(user) {
   }
 }
 
-function loginError(message) {
+function receiveLogin(user, token) {
   return {
-    type: LOGIN_FAILURE,
+    type: LOGIN_RECEIVED,
     isFetching: false,
-    isAuthenticated: false,
-    message
+    isAuthenticated: true,
+    user,
+    token,
   }
 }
 
-function logout() {
-  return {
-    type: LOGIN_LOGOUT,
-    isFetching: false,
-    isAuthenticated: false,
-    user: null,
-  }
-}
-
-// Thunk!
-export const loginUser = (username, password) => {
+export const loginUser = () => {
   return async (dispatch) => {
     dispatch(requestLogin());
 
     let login;
     try {
-      console.log("run loginUser");
-
-      login = await api.login(username, password);
-      console.log('login : ', login);
-      
+       //login = await log(username, password); // Kalla á post aðferð úr api hér :) - eigum eftir að gera hana
     } catch (e) {
-      return dispatch(loginError(e))
+      return dispatch(loginError(e));
     }
 
-    if (!login.loggedin) {
-      dispatch(loginError(login.error))
+    console.log(login);
+    const { result } = login;
+
+    if (result && result.error) {
+      dispatch(loginError(login.result.error));
     }
 
-    if (login.loggedin) {
-      const { user } = login;
+    if (result && result.user) {
+      const { user, token } = login.result;
+
       localStorage.setItem('user', JSON.stringify(user));
-      dispatch(receiveLogin(user));
+      localStorage.setItem('token', token);
+
+      dispatch(receiveLogin(user, token));
     }
   }
 }
 
-export const logoutUser = () => {
-  return async (dispatch) => {
-    localStorage.removeItem('user');
-    dispatch(logout());
+function requestLogout() {
+  return {
+    type: LOGOUT_REQUEST,
+    isAuthenticated: false,
+  }
+}
+
+function loginError(error) {
+  return {
+    type: LOGIN_ERROR,
+    isFetching: false,
+    isAuthenticated: false,
+    message: error,
   }
 }

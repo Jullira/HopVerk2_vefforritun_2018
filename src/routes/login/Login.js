@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { loginUser } from '../../actions/auth';
 
 /* todo sækja actions frá ./actions */
 import api from '../../api';
 import Button from '../../components/button';
 import './Login.css';
-import { loginUser, logoutUser } from '../../actions/auth';
 
 
 class Login extends Component {
@@ -26,9 +26,18 @@ class Login extends Component {
     }
   }
 
+  /*
   handleLogout = (e) => {
     const { dispatch } = this.props;
     dispatch(logoutUser());
+  }*/
+
+  handleSubmit = async (e) => {
+    console.log(this.props)
+    e.preventDefault();
+    const { dispatch } = this.props;
+    dispatch(loginUser());
+    console.log(e)
   }
 
   render() {
@@ -46,16 +55,10 @@ class Login extends Component {
       <div className = "login-page">
       {message && (<p>{message}</p>) }
         <form className = "login-form" onSubmit={this.handleSubmit}>
-          <div className="login-form-container">          
-            <div>
-              <label htmlFor="username">Notendanafn:</label>
-              <input id="username" type="text" name="username" value={username} required onChange={this.handleInputChange} />
-            </div>
-            <div>
-              <label htmlFor="password">Lykilorð:</label>
-              <input id="password" type="password" name="password" value={password} required onChange={this.handleInputChange} />
-            </div>
-            <Button disabled={isFetching}> Innskrá </Button>
+          <div className="login-form-container">
+            <input type="text" placeholder="Notendanafn" name="username" value={username} required onChange={this.handleInputChange} />
+            <input type="password" placeholder="Lykilorð" name="password" value={password} required onChange={this.handleInputChange} />
+            <button type="submit" className = "login-button" >Skrá inn</button>
           </div>
         </form>
         <div className = "register-link">
@@ -65,8 +68,6 @@ class Login extends Component {
     );
   }
 }
-
-/* todo tengja við redux */
 
 const mapStateToProps = (state) => {
   console.info(state);
