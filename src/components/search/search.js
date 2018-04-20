@@ -41,7 +41,11 @@ export default class Search extends Component {
         return (
             <div className = "search">
             {this.renderRedirect()}
-                <input  className="searchBox" value={this.state.inputValue} onChange={this.updateInputValue} onKeyPress={this.enterPressed}/>
+                <input  className="searchBox"
+                 value={this.state.inputValue}
+                 onChange={this.updateInputValue}
+                 onKeyPress={this.enterPressed}
+                 placeholder = "Leita að bók"/>
                 <Button onClick={this.onClick}> Leita </Button>
             </div>
         );
