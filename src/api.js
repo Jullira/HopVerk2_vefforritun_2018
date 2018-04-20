@@ -3,7 +3,6 @@ const baseurl = process.env.REACT_APP_SERVICE_URL;
 
 async function get(endpoint) {
   const token = window.localStorage.getItem('token');
-  console.log(token);
   const url = `${baseurl}${endpoint}`;
 
   const options = {
@@ -16,6 +15,35 @@ async function get(endpoint) {
   }
   
   const response = await fetch(url, options);
+  return response.json();
+}
+
+async function patch(endpoint, inputBody) {
+  const token = window.localStorage.getItem('token');
+  const url = `${baseurl}${endpoint}`;
+  console.log(inputBody);
+  
+  const options = {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(inputBody),
+    method: 'PATCH',
+  };
+  
+  if (token) {
+    options.headers['Authorization'] = `Bearer ${token}`;
+  }
+  let response = null;
+  console.log(options);
+  try{
+    response = await fetch(url, options);
+  } catch(e) {
+    console.error(e);
+  }
+
+  console.log(response);
   return response.json();
 }
 
@@ -65,4 +93,5 @@ export default {
   get,
   login,
   register,
+  patch,
 };

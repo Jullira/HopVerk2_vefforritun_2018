@@ -41,7 +41,6 @@ export default class User extends Component {
 
     render() {
       const {loading, data, user, type} = this.state;
-      console.log(type);
 
       if(loading) {
           return (

@@ -5,6 +5,7 @@ import './ListPane.css';
 import ListItemBook from '../listItemBook';
 import ListItemUser from '../listItemUser';
 import ListItemUserReadBooks from '../listItemUserReadBooks';
+import ListItemMyUserRedBooks from '../listItemMyUserReadBooks';
 
 export default class ListPane extends Component {
 
@@ -26,7 +27,10 @@ export default class ListPane extends Component {
                     case 'UserRedBooks':
                         listitem = <ListItemUserReadBooks id={item.id} book_id={item.book_id} title={item.title} rating={item.rating} review={item.review}/>
                         break; 
-                    // Bæta við fleirri lista típum  ??? 
+                    case 'MyUserRedBooks':
+                        listitem = <ListItemMyUserRedBooks id={item.id} book_id={item.book_id} title={item.title} rating={item.rating} review={item.review}/>
+                        break;
+                        // Bæta við fleirri lista típum  ??? 
                 }
                 return listitem;
             });
