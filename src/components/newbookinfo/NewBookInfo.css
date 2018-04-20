@@ -1,0 +1,44 @@
+.alter-book-info {
+  overflow: hidden;
+}
+
+.alter-book-info-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.alter-book-info-form label {
+  width: 20%;
+  float: left;
+}
+
+.alter-book-info-form input textarea {
+  
+  width: 500px;
+  float: right;
+}
+
+.alter-book-info-form input{
+  margin: 5px, 0, 5px 0 ;
+}
+
+.alter-book-info-form li {
+  list-style-type: none;
+  margin: 10px;
+}
+
+.alter-book-info-form .submit {
+  width:100px;
+  padding: 10px 20px;
+  margin: 10px;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #4e1d04;
+  font-size: 1rem;
+}
+
+.alter-book-info-form textarea {
+  width: 500px;
+}
+
