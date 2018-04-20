@@ -39,9 +39,30 @@ async function login(username, password) {
   return response.json();
 }
 
+async function register(username, password, name) {
+  const url = `${baseurl}register`;
+
+  const options  = {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body:  JSON.stringify({
+      username,
+      password,
+      name
+    }),
+    method: 'POST'
+  }
+   
+  const response = await fetch(url, options);
+  return response.json();
+}
+
 /* todo aðrar aðgerðir */
 
 export default {
   get,
   login,
+  register,
 };

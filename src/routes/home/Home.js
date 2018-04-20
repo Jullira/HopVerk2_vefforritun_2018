@@ -5,10 +5,22 @@ import './Home.css';
 
 
 class Home extends Component {
-
+  
   render() {
-    
+    const { isAuthenticated } = this.props; // no work 
+  
+    console.log(isAuthenticated);
     /* todo birta mismunandi upplýsingar ef innskráður notandi eða ekki */
+
+    if (isAuthenticated) {
+      return (
+        <div className="Home">
+          <h2>Velkomin á bókasafnið</h2>
+          <p>Þú ert skráður notandi og getur því <Link to="/books/new">skráð bækur</Link> og breytt <Link to="/books">þeim sem til eru.</Link></p>
+          <p>Einnig getur þú skoðað <Link to="/users">aðra notendur.</Link></p>
+        </div>
+      );
+    }
 
     return (
       <div className="Home">
@@ -22,3 +34,4 @@ class Home extends Component {
 
 /* todo setja upp tengingu við redux til að vita stöðu notanda */
 export default Home;
+

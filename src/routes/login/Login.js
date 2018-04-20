@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/auth';
 
 /* todo sækja actions frá ./actions */
@@ -40,9 +40,14 @@ class Login extends Component {
         <p>Skrái inn <em>{username}</em>...</p>
       );
     }
+
+    if (isAuthenticated) {
+      return (
+        <Redirect  to={`/`}/>
+      );
+    }
     
     return (
-        
       <div className = "login-page">
       {message && (<p>{message}</p>) }
         <form className = "login-form" onSubmit={this.handleSubmit}>

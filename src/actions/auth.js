@@ -15,7 +15,9 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGIN_RECEIVED = 'LOGIN_RECEIVED';
-export const LOGIN_ERROR = 'LOGIN_ERROR'
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const REGISTER_RECEIVED = 'REGISTER_RECEIVED';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
 
 function requestLogin() {
   return {
@@ -86,5 +88,43 @@ function loginError(error) {
     isFetching: false,
     isAuthenticated: false,
     message: error,
+  }
+}
+
+function registerError(errors) {
+  return {
+    type: REGISTER_ERROR,
+    isFetching: false,
+    isRegistered: false,
+    message: errors,
+  }
+}
+
+function receiveRegister(user) {
+  return {
+    type: REGISTER_RECEIVED,
+    isFetching: false,
+    isRegistered: true,
+  }
+}
+
+export const registerUser = (username, password, name) => {
+  return async (dispatch) => {
+    let register;
+    try {
+      register = await api.register(username, password, password); // Kalla á post aðferð úr api hér :) - eigum eftir að gera hana
+    } catch (e) {
+      return dispatch(registerError(e));
+    }
+    
+    if (register && register.errors ) {
+      console.log(register);
+      dispatch(registerError(register.errors));
+    }
+
+    if (register && register.user) {
+      const {user} = register;
+      dispatch(receiveRegister(user));
+    }
   }
 }

@@ -2,7 +2,9 @@ import {
   LOGIN_REQUEST,
   LOGOUT_REQUEST,
   LOGIN_RECEIVED,
-  LOGIN_ERROR
+  LOGIN_ERROR,
+  REGISTER_RECEIVED,
+  REGISTER_ERROR
   /* todo fleiri actions */
 } from '../actions/auth';
 
@@ -41,6 +43,19 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: action.isFetching,
         isAuthenticated: action.isAuthenticated,
+        message: action.message
+      }
+      case REGISTER_RECEIVED:
+      return{
+        ...state,
+        isFetching: action.isFetching,
+        isRegistered: action.isRegistered,
+      }
+      case REGISTER_ERROR:
+      return{
+        ...state,
+        isFetching: action.isFetching,
+        isRegistered: action.isRegistered,
         message: action.message
       }
     default:
