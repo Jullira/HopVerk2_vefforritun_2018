@@ -45,26 +45,25 @@ function receiveLogin(user, token) {
   }
 }
 
-export const loginUser = () => {
+export const loginUser = (username, password) => {
   return async (dispatch) => {
     dispatch(requestLogin());
 
     let login;
     try {
-       //login = await log(username, password); // Kalla á post aðferð úr api hér :) - eigum eftir að gera hana
+      login = await api.login(username, password); // Kalla á post aðferð úr api hér :) - eigum eftir að gera hana
     } catch (e) {
       return dispatch(loginError(e));
     }
 
     console.log(login);
-    const { result } = login;
-
-    if (result && result.error) {
-      dispatch(loginError(login.result.error));
+    
+    if (login && login.error) {
+      dispatch(loginError(login.error));
     }
 
-    if (result && result.user) {
-      const { user, token } = login.result;
+    if (login && login.user) {
+      const { user, token } = login;
 
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', token);

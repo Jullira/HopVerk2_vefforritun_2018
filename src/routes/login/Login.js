@@ -12,15 +12,8 @@ import './Login.css';
 class Login extends Component {
   state = { username:'', password:  '' }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { dispatch } = this.props;
-    dispatch(loginUser(this.state.username, this.state.password));
-  }
-
   handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log( name, " -- ", value);
     if (name) {
       this.setState({ [name]: value });
     }
@@ -32,12 +25,10 @@ class Login extends Component {
     dispatch(logoutUser());
   }*/
 
-  handleSubmit = async (e) => {
-    console.log(this.props)
+  handleSubmit = (e) => {
     e.preventDefault();
     const { dispatch } = this.props;
-    dispatch(loginUser());
-    console.log(e)
+    dispatch(loginUser(this.state.username, this.state.password));
   }
 
   render() {
@@ -70,10 +61,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.info(state);
-  
+  console.log(state);
   return {
-    
     isFetching: state.auth.isFetching,
     isAuthenticated: state.auth.isAuthenticated,
     message: state.auth.message,

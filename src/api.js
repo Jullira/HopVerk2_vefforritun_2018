@@ -21,32 +21,21 @@ async function get(endpoint) {
 
 
 async function login(username, password) {
-  //const token = window.localStorage.getItem('token');
-
   const url = `${baseurl}login`;
 
-  const settings = {
+  const options  = {
     headers: {
-      'Content-type': 'application/json'
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     },
-    data: {
+    body:  JSON.stringify({
       username,
-      password
-    },
-    method: 'POST',
-    "async": true,
-    "crossDomain": true
+      password,
+    }),
+    method: 'POST'
   }
    
-  /*
-  if (token) {
-    options.headers['Authorization'] = `Bearer ${token}`;
-  }*/
-  
-  const response = await fetch(url, settings);
-  
-
-  console.log(response);
+  const response = await fetch(url, options);
   return response.json();
 }
 
