@@ -27,7 +27,6 @@ export default class AlterBook extends Component {
             const { id } = this.props.match.params;
             const bookdata = await api.get('books/'+id);
             const categories = await api.get('categories?limit=100');
-            console.log(categories);
             this.setState({ categories, bookdata, loading: false });
             } catch (e) {
             console.error('Error fetching data', e);
@@ -47,7 +46,7 @@ export default class AlterBook extends Component {
 
         return (
             <div className="viewBook" >
-                <AlterBookInfo data={bookdata} categories = {categories}/>
+                <AlterBookInfo data={bookdata} categories = {categories} id = {id}/>
                 <Button  onClick={this.context.router.history.goBack}> Til baka </Button>
             </div>
         );

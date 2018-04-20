@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import api from '../../api';
-import { loginUser } from '../../actions/auth';
 import { Link } from 'react-router-dom';
-import { loginUser } from '../../actions/auth';
 
-import './alterBookInfo.css';
+
+import './NewBookInfo.css';
 
 /* todo aðrar útgáfur af takka fyrir disabled, minni takka fyrir logout og "warning" takka */
 
-export default class AlterBookInfo extends Component {
+export default class NewBookInfo extends Component {
   state = { title:'', author:'', isbn13:'',categorytitle:'', description:'', pagecount:'', language:''};
 
   handleInputChange = (e) => {
@@ -19,11 +18,6 @@ export default class AlterBookInfo extends Component {
     if (name) {
       this.setState({ [name]: value });
     }
-  }
-
-  componentDidMount() {
-    const { title, author, isbn13, categorytitle, description, pagecount, language} = this.props.data;
-    this.setState({ title, author, isbn13, categorytitle, description, pagecount, language});
   }
 
   handleSubmit = (e) => {

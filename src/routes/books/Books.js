@@ -5,6 +5,7 @@ import { Route, NavLink, Link, Switch, withRouter } from 'react-router-dom'
 import BookList from './routes/book-list';
 import ViewBook from './routes/view-book';
 import AlterBook from './routes/alter-book';
+import NewBook from './routes/newbook';
 import UserRoute from '../../components/user-route';
 
 import NotFound from '../not-found';
@@ -27,7 +28,7 @@ class Books extends Component {
             <Switch>
                 <Route exact path={`${path}`} component={BookList} />
                 <Route exact path={`${path}:search`} component={BookList} />
-                <UserRoute path={`${path}/new`} authenticated={authenticated} component={AlterBook} /> */}
+                <UserRoute path={`${path}/new`} authenticated={authenticated} component={NewBook} /> */}
                 <UserRoute path={`${path}/:id/edit`} authenticated={authenticated} component={AlterBook} /> */}
                 <UserRoute path={`${path}/:id`} authenticated={authenticated} component={ViewBook} /> */}
                 <Route component={NotFound} />

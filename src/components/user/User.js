@@ -41,13 +41,22 @@ export default class User extends Component {
 
     render() {
       const {loading, data, user, type} = this.state;
-
       if(loading) {
           return (
               <div> loading </div>
           )
       }
-
+      if (user) {
+        let { image } = user;
+        if (image ) {
+          const img_url_parts = user.image.split('upload');
+          user.image = `${img_url_parts[0]}upload/w_400,h_400,c_crop,g_face,r_max/w_200${img_url_parts[1]}`
+        }
+        else {
+          user.image = '/profile.jpg';
+        }
+      }
+      
       let prev, next;
         if (data.offset > 0 ) {
             prev = <Button onClick={this.onClickPrevious}> {`< Fyrri síða`} </Button>;
@@ -61,7 +70,7 @@ export default class User extends Component {
         <div className="user_container">
           <div className="user_photo_name">
             <h3>{user.name}</h3>
-            <p> **mynd** </p>
+            <img className="user_img" src={user.image}/>
           </div>
           <h2> Lesnar bækur</h2>
           <ListPane items={data.items} type={type} />
