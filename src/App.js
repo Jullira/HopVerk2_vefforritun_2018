@@ -26,7 +26,11 @@ class App extends Component {
   }
   
   render() {
-    const { isAuthenticated, isRegistered} = this.state; // Pointless ?? 
+    const { isAuthenticated, isRegistered} = this.props; // Pointless ?? 
+    console.log('======== app ========');
+    console.log(isAuthenticated);
+    
+    
     console.log("app -- auth ", isAuthenticated);
     //const isAuthenticated = false; /* vita hvort notandi sé innskráður */
     console.log('isAuthenticated   ', isAuthenticated)

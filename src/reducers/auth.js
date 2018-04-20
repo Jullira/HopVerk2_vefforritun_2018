@@ -14,13 +14,18 @@ const token = localStorage.getItem('token') || null;
 
 const initialState = {
   isFetching: false,
-  isAuthenticated: false,
+  isAuthenticated: !!token,
   message: null,
   user,
   token,
 };
 
 export default (state = initialState, action) => {
+  console.log('================= auth =================')
+  console.log(state.isAuthenticated);
+  console.log(action);
+  
+  
   switch (action.type) {
     case LOGIN_REQUEST:
       return {

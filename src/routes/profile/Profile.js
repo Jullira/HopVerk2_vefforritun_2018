@@ -28,7 +28,7 @@ export default class Profile extends Component {
 
   handleImageUpdate = (e) => {
     e.preventDefault();
-    const change =  api.patch('users/me', {image:this.state.image});   
+    const change =  api.patch('users/me/profile', {image:this.state.image});   
   }
 
   handleNameUpdate = (e) => {

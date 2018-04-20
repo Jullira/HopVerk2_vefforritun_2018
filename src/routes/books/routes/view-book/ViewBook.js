@@ -15,39 +15,101 @@ export default class ViewBook extends Component {
         router: PropTypes.object,
       }
         
-    state = { bookdata: null, readdata:null, loading: true, error: false};
+    state = {review: '', 
+            rating:1, 
+            bookdata: null, 
+            readdata:null, 
+            reviewWindowOpen: false, 
+            loadingB: true, 
+            loadingR: true, 
+            error: false};
 
     async componentDidMount() {
-        this.getData();
+        const { id } = this.props.match.params;
+        await this.getBook(id);
+        await this.getReviews(id);
     }
 
-    async getData() {
+    async getBook(id) {
         try {
-            const { id } = this.props.match.params;
             const bookdata = await api.get('books/'+id);
-            // const readdata = 
-            this.setState({ bookdata, loading: false });
+            this.setState({ bookdata,loadingB: false });
             } catch (e) {
-            console.error('Error fetching data', e);
-            this.setState({ error: true, loading: false });
+            console.error('Error fetching book', e);
+            this.setState({ error: true, loadingB: false });
             }
     }
 
+    async getReviews(id) {
+        try {
+            const readdata = await api.get('users/me/read');
+            this.setState({ readdata, loadingR: false });
+            } catch (e) {
+            console.error('Error fetching reviews', e);
+            this.setState({ error: true, loadingR: false });
+            }
+    }
+
+    openReviewWindow = (e) => {
+        e.preventDefault();
+        this.setState({ reviewWindowOpen: true});
+    }
+    closeReviewWindow = (e) => {
+        e.preventDefault();
+        this.setState({ reviewWindowOpen: false});
+    }
+
+    handleInputChange = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        if (name) {
+          this.setState({ [name]: value });
+        }
+      }
+      
+    handleSubmit = (e) => {
+        e.preventDefault();
+// post nýja einkunn   ath bokkId í gagnagr.
+
+
+    }
+      
+
+
     render() {
-        if(this.state.loading) {
+
+        const { id } = this.props.match.params;
+        const {bookdata, readdata, reviewWindowOpen, rating, review, loadingB, loadingR} = this.state;
+
+        if(loadingB || loadingR) {
             return (
                 <div> loading </div>
             )
         }
 
-        const { id } = this.props.match.params;
-        const {bookdata} = this.state;
+        const ratingRange = [1,2,3,4,5];
 
         return (
             <div className="viewBook" >
-                <BookInfo data={bookdata} />
+                <BookInfo data={bookdata}/>
                 <Link to = {`/books/${id}/edit`}>Breyta bók</Link> 
-                <BookReview />
+                {(!!readdata) ? <BookReview data={readdata} id={id}/> : null }
+                {(!reviewWindowOpen) 
+                ? <Button  onClick={this.openReviewWindow}> Skrá lestur </Button>
+                : <div className="setReviewWrapper">
+                    <form onSubmit={this.createReview}>
+                        <label for = "review">Umsögn:</label>
+                        <textarea name = "review" value={review} onChange={this.handleInputChange} rows = "10" />
+                        <label for = "rating">Einkunn:</label>
+                        <select name="rating" required onChange={this.handleInputChange}>
+                            {ratingRange.map((number) => <option value={number}> {number}</option> )}
+                        </select>
+                    <Button type="submit" > Vista </Button>
+                    <Button className="cancel" onClick={this.closeReviewWindow}> Hætta við </Button>
+                    </form> 
+                </div>
+                }
+                
                 <Button  onClick={this.context.router.history.goBack}> Til baka </Button>
             </div>
         );
