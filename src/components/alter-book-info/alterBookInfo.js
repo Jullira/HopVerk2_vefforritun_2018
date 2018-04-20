@@ -13,47 +13,58 @@ export default class AlterBookInfo extends Component {
 
 
   render() {
-    const { title, author, isbn13, description, pagecount, language} = this.props.data;
+    const { title, author, isbn13, categorytitle,description, pagecount, language} = this.props.data;
     const { categories } = this.props;
-    console.log( categories);
+    console.log(categories);
     
     return (
       <div className="alter-book-info">
         <form className="alter-book-info-form">
           <li>
             <label for = "title">Titill</label>
-            <input type = "textbox" name = "title" placeholder = {title} />
+            <input type = "textbox" name = "title" value = {title}
+            onChange = {(e) => this.setState({ title: e.target.value})} />
           </li>
           <li>
             <label for = "author">Höfundur</label>
-            <input type = "textbox" name = "author" placeholder={author} />
+            <input type = "textbox" name = "author" value={author}
+            onChange = {(e) => this.setState({ author: e.target.value})} />
           </li>
           <li>
             <label for = "isbn13">ISBN13</label>
-            <input type = "textbox" name ="isbn13" placeholder={isbn13} />
+            <input type = "textbox" name ="isbn13" value={isbn13}
+            onChange = {(e) => this.setState({ isbn13: e.target.value})} />
           </li>
           <li>
             <label for = "category">Flokkur</label>
-            <select ref="userInput" defaultplaceholder="" required>
-              <option placeholder="" disabled>Flokkar</option> {
+            <select ref="userInput" defaultvalue="" required>
+              <option value="" disabled>Flokkar</option> {
                 categories.items.map((category) => {
                   return <option key={category.id}
-                  placeholder={category.title}>{category.title}</option>;
+                  value={category.title}
+                  onChange = {(e) => this.setState({categorytitle: e.target.value})}
+                  >{category.title}</option>;
                 })
               }
             </select>
           </li>
           <li>
             <label for = "description">Lýsing</label>
-            <textarea name = "description" placeholder = {description} rows = "10" />
+            <textarea name = "description"
+             value = {description}
+             rows = "10"
+             onChange = {(e) => this.setState({ description: e.target.value})}
+              />
           </li>
           <li>
             <label for = "pagecount">Blaðsíðufjöldi</label>
-            <input type = "textbox" name = "pagecount" placeholder={pagecount} />
+            <input type = "textbox" name = "pagecount" value={pagecount}
+            onChange = {(e) => this.setState({ pagecount: e.target.value})} />
           </li>
           <li>
             <label for = "language">Tungumál</label>
-            <input type = "textbox" name = "language" placeholder={language} />
+            <input type = "textbox" name = "language" value={language}
+            onChange = {(e) => this.setState({ language: e.target.value})} />
           </li>
           <input type = "submit" className="submit" />
 
