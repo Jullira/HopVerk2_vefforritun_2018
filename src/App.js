@@ -14,6 +14,7 @@ import NotFound from './routes/not-found';
 import Register from './routes/register';
 
 import './App.css';
+import UserList from './components/user-list/UserList';
 
 class App extends Component {
   state = { isAuthenticated: null, isRegistered:null };
@@ -39,6 +40,7 @@ class App extends Component {
             <Route path="/" exact isAuthenticated={isAuthenticated} component={Home} />
             <Route  path="/login" exact component={Login} />
             <UserRoute path="/profile" isAuthenticated={isAuthenticated} component={Profile} />
+            <Route path="/users" exact component={UserList} />
             <Route path ="/books" component ={Books} />
             <Route  path = "/register" exact isRegistered={isRegistered} component = {Register} />
             <Route component={NotFound} />

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './ListPane.css';
-import ListitemBook from '../listItemBook/ListItemBook';
+import ListItemBook from '../listItemBook';
+import ListItemUser from '../listItemUser'
 
 export default class ListPane extends Component {
 
@@ -13,9 +14,12 @@ export default class ListPane extends Component {
             let listitem;
             switch (type) {
                 case 'BookList': 
-                    listitem = <ListitemBook id={item.id} title={item.title} author={item.author}/>
+                    listitem = <ListItemBook id={item.id} title={item.title} author={item.author}/>
                     break;
-                // Bæta við fleirri lista típum 
+                case 'UserList':
+                    listitem = <ListItemUser id={item.id} username={item.username}/>
+                    break;
+                // Bæta við fleirri lista típum  ??? 
             }
             return listitem;
         });

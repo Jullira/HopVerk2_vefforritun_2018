@@ -19,12 +19,6 @@ class Login extends Component {
     }
   }
 
-  /*
-  handleLogout = (e) => {
-    const { dispatch } = this.props;
-    dispatch(logoutUser());
-  }*/
-
   handleSubmit = (e) => {
     e.preventDefault();
     const { dispatch } = this.props;
@@ -73,6 +67,5 @@ const mapStateToProps = (state) => {
     message: state.auth.message,
   }
 }
-
 
 export default connect(mapStateToProps)(Login);
