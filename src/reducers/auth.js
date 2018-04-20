@@ -6,14 +6,18 @@ import {
   REGISTER_RECEIVED,
   REGISTER_ERROR
   /* todo fleiri actions */
+
 } from '../actions/auth';
+
+const user = JSON.parse(localStorage.getItem('user') || 'null');
+const token = localStorage.getItem('token') || null;
 
 const initialState = {
   isFetching: false,
   isAuthenticated: false,
   message: null,
-  user: null,
-  token: null,
+  user,
+  token,
 };
 
 export default (state = initialState, action) => {
