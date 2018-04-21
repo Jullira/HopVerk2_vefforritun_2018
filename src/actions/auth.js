@@ -5,9 +5,6 @@
  * Í async "thunks" ætti þá að gera vefþjónustuköll
  */
 
-/* todo fleiri action */
-
-/* todo async "thunk" fyrir tengingu við vefþjónustu */
 import api from '../api';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
@@ -23,16 +20,6 @@ function requestLogin() {
     type: LOGIN_REQUEST,
     isFetching: true,
     isAuthenticated: false,
-  }
-}
-
-function receiveLogin(user) {
-  return {
-    type: LOGIN_SUCCESS,
-    isFetching: false,
-    isAuthenticated: true,
-    user,
-    message: null,
   }
 }
 
@@ -58,8 +45,6 @@ export const loginUser = (username, password) => {
       return dispatch(loginError(e));
     }
 
-    console.log(login);
-    
     if (login && login.error) {
       dispatch(loginError(login.error));
     }
@@ -122,15 +107,12 @@ export const registerUser = (username, password, name) => {
     } catch (e) {
       return dispatch(registerError(e));
     }
-    console.log(register);
 
     if (register && register.errors ) {
-      console.log(register);
       dispatch(registerError(register.errors));
     }
 
     if (register && register.id) {
-      console.log('register return true ---- ')
       dispatch(receiveRegister());
     }
   }

@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import './Search.css';
-import api from '../../api';
-import ListPane from '../list-pane';
-import Heading from '../heading';
 import Button from '../button';
-import BookList from '../../routes/books/routes/book-list';
 import { Redirect } from 'react-router-dom'
 
 
@@ -49,11 +44,5 @@ export default class Search extends Component {
                 <Button onClick={this.onClick}> Leita </Button>
             </div>
         );
-    }
-}
-
-const mapStateToProps = (state) => {
-    return {
-        auth: state.auth,
     }
 }

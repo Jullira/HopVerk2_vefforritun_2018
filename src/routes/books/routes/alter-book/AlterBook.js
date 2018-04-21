@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux';
 import api from '../../../../api';
-import { Link } from 'react-router-dom';
-import BookInfo from '../../../../components/book-info';
-import BookReview from '../../../../components/book-review';
 import Button from '../../../../components/button'
 import AlterBookInfo from '../../../../components/alter-book-info';
 

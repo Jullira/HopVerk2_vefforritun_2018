@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import './User.css';
 import ListPane from '../list-pane';
@@ -70,7 +69,7 @@ export default class User extends Component {
         <div className="user_container">
           <div className="user_photo_name">
             <h3>{user.name}</h3>
-            <img className="user_img" src={user.image}/>
+            <img className="user_img" src={user.image} alt="profile"/>
           </div>
           <h2> Lesnar bækur</h2>
           <ListPane items={data.items} type={type} />

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import './BookReview.css';
 import Button from '../button';
@@ -13,7 +12,7 @@ deleteReview = (e) => {
   const url = 'users/me/read';
   const {id} = this.props;
   const body = {
-    id: parseInt(id)
+    id: parseInt(id,10)
   };
   api.apiDelete(url, body);
   this.setState({deleted: this.state.deleted.push(id)})
@@ -21,16 +20,14 @@ deleteReview = (e) => {
 
 render() {
   const {data, id} = this.props;
-  const {deleted} = this.state;
 
   let myReadBooks = [];
 
-  console.log(data);
   data.items.map((r)  => {
-    console.log(id, "---- ", r.book_id);
-    if (id==r.book_id) {
+    if (id===r.book_id) {
       myReadBooks.push(r);
     }
+    return null;
   });
           
   return (    

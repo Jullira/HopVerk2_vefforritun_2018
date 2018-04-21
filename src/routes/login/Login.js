@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/auth';
-
-/* todo sækja actions frá ./actions */
-import api from '../../api';
-import Button from '../../components/button';
 import './Login.css';
 
 
@@ -60,7 +56,6 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     isFetching: state.auth.isFetching,
     isAuthenticated: state.auth.isAuthenticated,

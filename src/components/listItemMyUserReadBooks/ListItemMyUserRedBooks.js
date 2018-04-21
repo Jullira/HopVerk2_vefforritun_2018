@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '../button';
 
@@ -12,7 +11,7 @@ export default class ListItemMyUserRedBooks extends Component {
 
 
     render() {
-        const {id, book_id, title, rating, review} = this.props;
+        const {book_id, title, rating, review} = this.props;
 
         return(
             <div className = "list-itemBook">

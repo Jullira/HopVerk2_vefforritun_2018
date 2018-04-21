@@ -21,7 +21,6 @@ async function get(endpoint) {
 async function patch(endpoint, inputBody) {
   const token = window.localStorage.getItem('token');
   const url = `${baseurl}${endpoint}`;
-  console.log(inputBody);
   
   const options = {
     headers: {
@@ -36,21 +35,18 @@ async function patch(endpoint, inputBody) {
     options.headers['Authorization'] = `Bearer ${token}`;
   }
   let response = null;
-  console.log(options);
   try{
     response = await fetch(url, options);
   } catch(e) {
     console.error(e);
   }
 
-  console.log(response);
   return response.json();
 }
 
 async function post(endpoint, inputBody) {
   const token = window.localStorage.getItem('token');
   const url = `${baseurl}${endpoint}`;
-  console.log(inputBody);
   
   const options = {
     headers: {
@@ -65,21 +61,18 @@ async function post(endpoint, inputBody) {
     options.headers['Authorization'] = `Bearer ${token}`;
   }
   let response = null;
-  console.log(options);
   try{
     response = await fetch(url, options);
   } catch(e) {
     console.error(e);
   }
 
-  console.log(response);
   return response.json();
 }
 
 async function postImage(endpoint, inputBody) {
   const token = window.localStorage.getItem('token');
   const url = `${baseurl}${endpoint}`;
-  console.log(inputBody);
   
   const options = {
     headers: {},
@@ -91,21 +84,18 @@ async function postImage(endpoint, inputBody) {
     options.headers['Authorization'] = `Bearer ${token}`;
   }
   let response = null;
-  console.log(options);
   try{
     response = await fetch(url, options);
   } catch(e) {
     console.error(e);
   }
 
-  console.log(response);
   return response.json();
 }
 
 async function apiDelete(endpoint, inputBody) {
   const token = window.localStorage.getItem('token');
   const url = `${baseurl}${endpoint}`;
-  console.log(inputBody);
   
   const options = {
     headers: {
@@ -120,14 +110,12 @@ async function apiDelete(endpoint, inputBody) {
     options.headers['Authorization'] = `Bearer ${token}`;
   }
   let response = null;
-  console.log(options);
   try{
     response = await fetch(url, options);
   } catch(e) {
     console.error(e);
   }
 
-  console.log(response);
   return response.json();
 }
 
@@ -170,8 +158,6 @@ async function register(username, password, name) {
   const response = await fetch(url, options);
   return response.json();
 }
-
-/* todo aðrar aðgerðir */
 
 export default {
   get,

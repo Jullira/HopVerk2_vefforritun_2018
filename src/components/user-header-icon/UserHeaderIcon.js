@@ -25,10 +25,9 @@ class UserHeaderIcon extends Component {
         else {
           image = '/profile.jpg';
         }
-        console.log(this.props);
         return(
             <div className = "userHeaderIcon">
-              <img className="user_img" src={image}/>  
+              <img className="user_img" src={image} alt="profile"/>  
               <Link to="/profile">{name}</Link>
               <Button onClick={this.logOutHandler}>Útskrá</Button>
             </div>

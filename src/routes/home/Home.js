@@ -11,9 +11,6 @@ class Home extends Component {
   render() {
     const { isAuthenticated } = this.props; 
   
-    console.log(isAuthenticated);
-    /* todo birta mismunandi upplýsingar ef innskráður notandi eða ekki */
-
     if (isAuthenticated) {
       return (
         <div className="Home">
@@ -34,9 +31,7 @@ class Home extends Component {
   }
 }
 
-/* todo setja upp tengingu við redux til að vita stöðu notanda */
 const mapStateToProps = (state) => {
-  console.log("state.auth.isAuthenticated---", state.auth.isAuthenticated);
   return{
     isAuthenticated: state.auth.isAuthenticated,
   }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux';
 import api from '../../../../api';
 import { Link } from 'react-router-dom';
 import BookInfo from '../../../../components/book-info';
@@ -76,20 +75,18 @@ export default class ViewBook extends Component {
 
         const url = 'users/me/read';
         const data = {
-            'bookId': parseInt(id),
-            'rating': parseInt(rating),
+            'bookId': parseInt(id,10),
+            'rating': parseInt(rating,10),
             'review': review
         }
-        const update = api.post(url, data);
+        api.post(url, data);
         this.setState({reviewWindowOpen: false, review:'', rating:''});
         this.getReviews(id);
     }
       
-
-
     render() {
         const { id } = this.props.match.params;
-        const {bookdata, readdata, reviewWindowOpen, rating, review, loadingB, loadingR} = this.state;
+        const {bookdata, readdata, reviewWindowOpen, review, loadingB, loadingR} = this.state;
 
         if(loadingB || loadingR) {
             return (

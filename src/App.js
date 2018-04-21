@@ -27,13 +27,8 @@ class App extends Component {
   
   render() {
     const { isAuthenticated, isRegistered} = this.props; // Pointless ?? 
-    console.log('======== app ========');
-    console.log(isAuthenticated);
     
-    
-    console.log("app -- auth ", isAuthenticated);
     //const isAuthenticated = false; /* vita hvort notandi sé innskráður */
-    console.log('isAuthenticated   ', isAuthenticated)
     return (
       <main className="main">
         <Helmet defaultTitle="Bókasafnið" titleTemplate="%s – Bókasafnið" />
@@ -59,7 +54,6 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("state.auth.isRegistered---", state.auth.isRegistered);
   return{
     isAuthenticated: state.auth.isAuthenticated,
     isRegistered: state.auth.isRegistered,

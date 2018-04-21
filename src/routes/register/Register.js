@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, Redirect } from 'react-router-dom';
 import { registerUser } from '../../actions/auth';
 
-/* todo sækja actions frá ./actions */
-import api from '../../api';
 import { Link } from 'react-router-dom';
 import Heading from '../../components/heading';
-import Button from '../../components/button';
 import './Register.css';
 
 class Register extends Component {
@@ -27,7 +23,7 @@ class Register extends Component {
 
     render() {
         const { username, password, name} = this.state;
-        const { isFetching, isRegistered, message } = this.props;
+        const { isRegistered, message } = this.props;
 
         if (isRegistered) { 
             return (
@@ -57,7 +53,6 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.auth.isRegistered);
   return {
     isFetching: state.auth.isFetching,
     isRegistered: state.auth.isRegistered,

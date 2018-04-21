@@ -5,16 +5,11 @@ import {
   LOGIN_ERROR,
   REGISTER_RECEIVED,
   REGISTER_ERROR
-  /* todo fleiri actions */
 
 } from '../actions/auth';
 
 const user = JSON.parse(localStorage.getItem('user') || 'null');
 const token = localStorage.getItem('token') || null;
-console.log('ketill er bestur')
-console.log(user);
-console.log(token);
-console.log(!!token);
 
 
 const initialState = {
@@ -26,10 +21,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log('================= auth =================')
-  console.log(state.isAuthenticated);
-  console.log(action);
-  
   
   switch (action.type) {
     case LOGIN_REQUEST:

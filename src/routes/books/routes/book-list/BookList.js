@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import './BookList.css';
 import Button from '../../../../components/button';

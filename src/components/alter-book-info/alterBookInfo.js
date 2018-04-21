@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Select from 'react-select';
-import { connect } from 'react-redux';
 import api from '../../api';
-import { Link } from 'react-router-dom';
-import { loginUser } from '../../actions/auth';
 
 import './alterBookInfo.css';
 
-/* todo aðrar útgáfur af takka fyrir disabled, minni takka fyrir logout og "warning" takka */
+/*  aðrar útgáfur af takka fyrir disabled, minni takka fyrir logout og "warning" takka */
 
 export default class AlterBookInfo extends Component {
   state = { title:'', author:'', isbn13:'',categorytitle:'', description:'', pagecount:'', language:''};
@@ -27,7 +22,6 @@ export default class AlterBookInfo extends Component {
 
   handleSubmit = (e) => {
     const { title, author, isbn13, categorytitle, description, pagecount, language} = this.state;
-    console.log(this.state);
     e.preventDefault();
     const url  = 'books/'+ this.props.id;
     const data = {
@@ -43,7 +37,7 @@ export default class AlterBookInfo extends Component {
   }
 
   render() {
-    const { title, author, isbn13, categorytitle, description, pagecount, language} = this.state;
+    const { title, author, isbn13, description, pagecount, language} = this.state;
     const { categories } = this.props;
     
     return (

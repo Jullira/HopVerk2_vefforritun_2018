@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import './ListPane.css';
 import ListItemBook from '../listItemBook';
@@ -15,7 +14,6 @@ export default class ListPane extends Component {
         let list = <p> Ekkert fannst </p>;
         if (items.length > 0) {
             list = items.map((item) => {
-                console.log(item, "    -- ", type);
                 let listitem;
                 switch (type) {
                     case 'BookList': 
@@ -30,7 +28,9 @@ export default class ListPane extends Component {
                     case 'MyUserRedBooks':
                         listitem = <ListItemMyUserRedBooks id={item.id} book_id={item.book_id} title={item.title} rating={item.rating} review={item.review}/>
                         break;
-                        // Bæta við fleirri lista típum  ??? 
+                        // Bæta við fleirri lista típum  ???
+                    default: 
+                        listitem = "" 
                 }
                 return listitem;
             });

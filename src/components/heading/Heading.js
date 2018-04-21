@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import './Heading.css';
 
@@ -21,7 +20,9 @@ export default class Heading extends Component {
         break; 
       case "Registered":
         heading = "Nýskráning tókst!";
-        break; 
+        break;
+      default: 
+        heading = "Bókasafn"; 
 
       // Fleiri cases 
     }

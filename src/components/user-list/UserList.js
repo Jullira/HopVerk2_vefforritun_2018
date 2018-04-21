@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import './UserList.css';
 import Button from '../button';
@@ -40,7 +39,7 @@ class UserList extends Component {
     }
 
     render() {
-        const {loading, data, type, isAuthenticated  } = this.state;
+        const { data } = this.state;
 
         /*if(!isAuthenticated){
             return (
@@ -55,7 +54,7 @@ class UserList extends Component {
 
        
         let prev, next;
-        if (data.offset > 0 ) {
+        if (data.offset && data.offset > 0 ) {
             prev = <Button onClick={this.onClickPrevious}> {`< Fyrri síða`} </Button>;
         }
         /// Skoða - next takki ef nkl 10 á síðustu bls - bug
@@ -79,7 +78,6 @@ class UserList extends Component {
 
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
       isAuthenticated: state.auth.isAuthenticated,
     }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet';
 import Button from '../../components/button';
 import ListPane from '../../components/list-pane';
 import api from '../../api';
@@ -35,12 +34,12 @@ export default class Profile extends Component {
     e.preventDefault();
     const formdata = new FormData();
     formdata.append('profile', this.state.image);
-    const change =  api.postImage('users/me/profile', formdata);   
+    api.postImage('users/me/profile', formdata);   
   }
 
   handleNameUpdate = (e) => {
     e.preventDefault();
-    const change =  api.patch('users/me', {name:this.state.name});   
+    api.patch('users/me', {name:this.state.name});   
 
   }
 
@@ -49,7 +48,7 @@ export default class Profile extends Component {
     const {password1, password2} = this.state;
     if (password1===password2){
       this.setState({samePW:true});
-      const change =  api.patch('users/me', {password:this.state.password1});   
+      api.patch('users/me', {password:this.state.password1});   
     }else {
       this.setState({samePW:false});
     }
@@ -75,8 +74,6 @@ export default class Profile extends Component {
       try {
           const userUrl = 'users/me';
           const readBooks = userUrl+'/read?offset=' + this.state.offset + '&limit=10';          
-          // const user = await api.get(userUrl);
-          // const {name, image, password} = user; 
           const data = await api.get(readBooks);
           this.setState({ data, loading: false });
           } catch (e) {
@@ -86,7 +83,7 @@ export default class Profile extends Component {
   }
 
   render() {
-    const {loading, data, name, image, password1, password2, samePW, type} = this.state;
+    const {loading, data, name, password1, password2, samePW, type} = this.state;
 
     if(loading) {
         return (

@@ -13,8 +13,6 @@ class Header extends Component {
 
   render() {
     const {isAuthenticated, user} = this.props.auth;
-    console.log("Header --- ", user);
-    console.log(isAuthenticated, user)
     return (
       <header className="header">
         <h1 className="header__heading"><Link to="/">Bókasafnið</Link></h1>
