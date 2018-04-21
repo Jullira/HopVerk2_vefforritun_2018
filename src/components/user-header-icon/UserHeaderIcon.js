@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Button from '../button';
 import './UserHeaderIcon.css';
-import {requestLogout} from '../../actions/auth';
+import { requestLogout } from '../../actions/auth';
 
 class UserHeaderIcon extends Component {
   logOutHandler = (e) => {
@@ -15,8 +15,9 @@ class UserHeaderIcon extends Component {
 }
 
     render() {
-        const { username, name} = this.props.user;
+        const { name} = this.props.user;
         let { image } = this.props.user;
+        
         if (image ) {
           const img_url_parts = image.split('upload');
           image = `${img_url_parts[0]}upload/w_400,h_400,c_crop,g_face,r_max/w_200${img_url_parts[1]}`

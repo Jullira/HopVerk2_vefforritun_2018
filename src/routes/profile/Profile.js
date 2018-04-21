@@ -26,9 +26,16 @@ export default class Profile extends Component {
     }
   }
 
+  handleImageInputChange = (e) => {
+    const image = e.target.files[0];
+    this.setState({ image });
+  }
+
   handleImageUpdate = (e) => {
     e.preventDefault();
-    const change =  api.patch('users/me/profile', {image:this.state.image});   
+    const formdata = new FormData();
+    formdata.append('profile', this.state.image);
+    const change =  api.postImage('users/me/profile', formdata);   
   }
 
   handleNameUpdate = (e) => {
@@ -101,7 +108,7 @@ export default class Profile extends Component {
         <h2>Upplýsingar</h2>
         <div className="myUserInfo">
           <form className="setImage" onSubmit={this.handleImageUpdate}>
-            <input type="file" name="image" value={image} required onChange={this.handleInputChange}/> 
+            <input type="file" name="image" required onChange={this.handleImageInputChange}/> 
             <Button type="submit">Uppfæra mynd</Button>
           </form>
           <form className="setName" onSubmit={this.handleNameUpdate}>

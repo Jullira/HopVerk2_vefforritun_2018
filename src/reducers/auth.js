@@ -11,6 +11,11 @@ import {
 
 const user = JSON.parse(localStorage.getItem('user') || 'null');
 const token = localStorage.getItem('token') || null;
+console.log('ketill er bestur')
+console.log(user);
+console.log(token);
+console.log(!!token);
+
 
 const initialState = {
   isFetching: false,
@@ -38,6 +43,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: action.isAuthenticated,
+        user: action.user,
+        token: action.token
       }
     case LOGIN_RECEIVED:
       return{

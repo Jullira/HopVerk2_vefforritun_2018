@@ -76,6 +76,32 @@ async function post(endpoint, inputBody) {
   return response.json();
 }
 
+async function postImage(endpoint, inputBody) {
+  const token = window.localStorage.getItem('token');
+  const url = `${baseurl}${endpoint}`;
+  console.log(inputBody);
+  
+  const options = {
+    headers: {},
+    body: inputBody,
+    method: 'POST',
+  };
+  
+  if (token) {
+    options.headers['Authorization'] = `Bearer ${token}`;
+  }
+  let response = null;
+  console.log(options);
+  try{
+    response = await fetch(url, options);
+  } catch(e) {
+    console.error(e);
+  }
+
+  console.log(response);
+  return response.json();
+}
+
 async function apiDelete(endpoint, inputBody) {
   const token = window.localStorage.getItem('token');
   const url = `${baseurl}${endpoint}`;
@@ -153,5 +179,6 @@ export default {
   register,
   patch,
   post,
+  postImage,
   apiDelete,
 };

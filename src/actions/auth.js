@@ -9,7 +9,6 @@
 
 /* todo async "thunk" fyrir tengingu við vefþjónustu */
 import api from '../api';
-import { request } from 'https';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -77,9 +76,15 @@ export const loginUser = (username, password) => {
 }
 
 export function requestLogout() {
+
+  localStorage.setItem('user', null);
+  localStorage.setItem('token', null);
+
   return {
     type: LOGOUT_REQUEST,
     isAuthenticated: false,
+    user: null,
+    token: null
   }
 }
 
