@@ -17,7 +17,7 @@ class Header extends Component {
       <header className="header">
         <h1 className="header__heading"><Link to="/">Bókasafnið</Link></h1>
         <Search/>
-        {isAuthenticated ? <UserHeaderIcon />
+        {isAuthenticated && user ? <UserHeaderIcon />
         : <Link to="/login">Innskráning</Link>}
       </header>
     );
